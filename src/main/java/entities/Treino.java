@@ -17,11 +17,16 @@ public class Treino {
         this.tipo = tipo;
     }
 
-    public String getExercicio() {
-        return grupamento;
+    public String getGrupamento() {
+        return String.format(grupamento);
     }
 
-    public void setExercicio(String exercicio) {
-        this.grupamento = exercicio;
+    public void setGrupamento(String grupamento) {
+        this.grupamento = grupamento;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s", getTipo());
     }
 }

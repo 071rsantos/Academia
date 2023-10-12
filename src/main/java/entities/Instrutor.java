@@ -27,7 +27,6 @@ public class Instrutor {
 
     @Override
     public String toString() {
-        return String.format("15%s", getNome())
-                + String.format("%15s", getEspecialidade());
+        return String.format("%s          %s", getNome(), getEspecialidade());
     }
 }

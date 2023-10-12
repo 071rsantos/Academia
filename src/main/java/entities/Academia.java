@@ -1,13 +1,12 @@
 package entities;
 
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Academia {
     Scanner sc = new Scanner(System.in);
     //iniciar com 3 instrutores.
     Instrutor instrutor = new Instrutor("Fernando", "Emagrecimento");
-    Instrutor instrutor2 = new Instrutor("João", "Hipertrofia");
+    Instrutor instrutor2 = new Instrutor("João Augusto", "Hipertrofia");
     Instrutor instrutor3 = new Instrutor("Giovanni", "Condicionamento");
 
     //Iniciar com 3 tipos de treino
@@ -24,36 +23,46 @@ public class Academia {
         System.out.println("--------------------------------------------------------------");
         System.out.print("Digite o nome do aluno: ");
         String nome = sc.nextLine();
-        System.out.println("Escolha seu professor baseado no seu foco: ");
-        System.out.format("15%s 15%s", "INSTRUTOR", "ESPECIALIDADE");
-        System.out.println("---------------------------------------------------------------");
-        System.out.format("15%s 1", instrutor);
-        System.out.format("15%s 2", instrutor2);
-        System.out.format("15%s 3", instrutor3);
+        System.out.println("Escolha seu professor baseado no seu foco: \n");
+        System.out.print("INSTRUTOR"+"          "+"ESPECIALIDADE");
+        System.out.println("\n---------------------------------------------------------------");
+        System.out.format("1 " +instrutor);
+        System.out.println();
+        System.out.format("2 "+instrutor2);
+        System.out.println();
+        System.out.format("3 " +instrutor3);
+        System.out.println("\n----------------------------------------------------------------");
         int opc = sc.nextInt();
-        switch (opc){
-            case 1:
-                aluno = new Aluno(nome,instrutor,abc);
+
+        switch (opc) {
+            case 1 -> {
+                aluno = new Aluno(nome, instrutor, abc);
                 System.out.println("Aluno matriculado");
-                break;
-            case 2:
-                aluno = new Aluno(nome,instrutor2,abcd);
+            }
+            case 2 -> {
+                aluno = new Aluno(nome, instrutor2, abcd);
                 System.out.println("Aluno matriculado");
-                break;
-            case 3:
-                aluno = new Aluno(nome,instrutor3,ab);
+            }
+            case 3 -> {
+                aluno = new Aluno(nome, instrutor3, ab);
                 System.out.println("Aluno matriculado");
+            }
+            default -> {
+                System.out.println("Opcao invalida.");
                 break;
-            default:
-                System.out.println("Opcao invalida.");;
-                break;
+            }
         }
     }
     public void mostrarDadosAlunos(){
-        System.out.format("15%s 15%s 15%s", "ALUNO", "INSTRUTOR", "TREINO");
+        System.out.println("ALUNO" + "          "+ "INSTRUTOR" +"            "+"FOCO"+ "            "+ "TREINO");
         System.out.println("\n------------------------------------------------------------------------");
-        System.out.format("15%s 15%s 15%s", aluno.getNome(), aluno.getInstrutor(), aluno.getTreino());
+        System.out.printf(aluno.getNome()+ "          "+ aluno.getInstrutor()+ "          "+ aluno.getTreino());
         System.out.println("\n------------------------------------------------------------------------");
+    }
+
+    public void mostrarTreino(){
+        System.out.println("#### TREINO ###");
+        System.out.printf(aluno.getTreino().getGrupamento());
     }
 
 }
