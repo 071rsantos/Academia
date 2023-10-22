@@ -10,24 +10,26 @@ public class Principal {
         Scanner sc = new Scanner(System.in);
         int opc;
 
-        academia.matricularAluno();
-
         do {System.out.println("\n----------------------------------------------------------\n" +
                 "O que deseja?\n" +
-                "1: Mostrar dados do aluno.\n" +
-                "2: Mostrar treino do aluno.\n" +
-                "3: Encerrar programa." +
+                "1: Matricular aluno.\n" +
+                "2: Mostrar dados do aluno.\n" +
+                "3: Mostrar treino do aluno.\n" +
+                "4: Encerrar programa." +
                 "\n----------------------------------------------------------\n");
             opc = sc.nextInt();
 
             switch (opc) {
                 case 1:
-                    academia.mostrarDadosAlunos();
+                    academia.matricularAluno();
                     break;
                 case 2:
-                    academia.mostrarTreino();
+                    academia.mostrarDadosAlunos();
                     break;
                 case 3:
+                    academia.mostrarTreino();
+                    break;
+                case 4:
                     System.out.println("Encerrado.");
                     break;
             }

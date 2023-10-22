@@ -1,5 +1,7 @@
 package entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Academia {
@@ -14,15 +16,19 @@ public class Academia {
     Treino abc = new Treino("ABC", "PUXADAS, EMPURRADAS E PERNAS");
     Treino abcd = new Treino("ABCD", "QUADRICEPS & PANTURRILHA, PEITO & TRICEPS, COSTAS & BICEEPS, OMBRO & POSTERIOR");
 
+    //Inicializar arrayList
+    List<Aluno> list = new ArrayList<>();
+
     //Declarar aluno
     Aluno aluno;
 
     //coletar dados do aluno
     public void matricularAluno(){
+        sc.nextLine();
         System.out.println("##### MATRICULAR ALUNO #####");
         System.out.println("--------------------------------------------------------------");
         System.out.print("Digite o nome do aluno: ");
-        String nome = sc.nextLine();
+        String nome = sc.nextLine().toUpperCase();
         System.out.println("Escolha seu professor baseado no seu foco: \n");
         System.out.print("INSTRUTOR"+"          "+"ESPECIALIDADE");
         System.out.println("\n---------------------------------------------------------------");
@@ -37,14 +43,17 @@ public class Academia {
         switch (opc) {
             case 1 -> {
                 aluno = new Aluno(nome, instrutor, abc);
+                list.add(aluno);
                 System.out.println("Aluno matriculado");
             }
             case 2 -> {
                 aluno = new Aluno(nome, instrutor2, abcd);
+                list.add(aluno);
                 System.out.println("Aluno matriculado");
             }
             case 3 -> {
                 aluno = new Aluno(nome, instrutor3, ab);
+                list.add(aluno);
                 System.out.println("Aluno matriculado");
             }
             default -> {
@@ -54,15 +63,36 @@ public class Academia {
         }
     }
     public void mostrarDadosAlunos(){
-        System.out.println("ALUNO" + "          "+ "INSTRUTOR" +"            "+"FOCO"+ "            "+ "TREINO");
-        System.out.println("\n------------------------------------------------------------------------");
-        System.out.printf(aluno.getNome()+ "          "+ aluno.getInstrutor()+ "          "+ aluno.getTreino());
-        System.out.println("\n------------------------------------------------------------------------");
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println("ALUNO" + "          "+ "INSTRUTOR" +"            "+"FOCO"+ "            "+ "TREINO");
+            System.out.println("\n------------------------------------------------------------------------");
+            System.out.printf(list.get(i).getNome()+ "          "+ list.get(i).getInstrutor()+ "          "+ list.get(i).getTreino());
+            System.out.println("\n------------------------------------------------------------------------");
+
+        }
     }
 
     public void mostrarTreino(){
-        System.out.println("#### TREINO ###");
-        System.out.printf(aluno.getTreino().getGrupamento());
+        System.out.println("Digite o nome do aluno que deseja acessar o treino: ");
+        sc.nextLine();
+        String nome = sc.nextLine().toUpperCase();
+        Integer pos = position(list, nome);
+         if (pos == null){
+             System.out.println("Aluno não encontrado.");
+         }
+         else{
+             System.out.println("#### TREINO ###");
+             System.out.printf(list.get(pos).getTreino().getGrupamento());
+         }
+    }
+
+    public Integer position(List<Aluno> list, String nome) {
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getNome().equals(nome)) {
+                return i;
+            }
+        }
+        return null;
     }
 
 }
